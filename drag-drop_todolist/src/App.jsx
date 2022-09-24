@@ -5,6 +5,8 @@ import React from 'react';
 import EventBar from './components/EventBar';
 import TaskBox from './components/TaskBox';
 
+
+
 function App() {
   const initEvent = [
     {
@@ -13,17 +15,16 @@ function App() {
       ['In progress']: [],
       ['Completed']: [],
     },
-  ];
+  ]
 
-  const [events, setEvents] = React.useState(() => {
+  const [events, setEvents] = React.useState(() =>{
     return localStorage.getItem('events')
-      ? JSON.parse(localStorage.getItem('events'))
-      : initEvent;
+    ? JSON.parse(localStorage.getItem('events'))
+    : initEvent;
   });
 
   const [currentEvent, setCurrentEvent] = React.useState(events[0]);
-
-  // Set localStorage
+  
   React.useEffect(() => {
     if (!events.length) {
       localStorage.setItem('events', JSON.stringify(initEvent));
@@ -36,16 +37,16 @@ function App() {
   return (
     <div className='App'>
       <EventBar
-        events={events}
-        setEvents={setEvents}
-        currentEvent={currentEvent}
-        setCurrentEvent={setCurrentEvent}
+      events={events}
+      setEvents={setEvents}
+      currentEvent={currentEvent}
+      setCurrentEvent={setCurrentEvent}
       />
       <TaskBox
-        events={events}
-        setEvents={setEvents}
-        currentEvent={currentEvent}
-        setCurrentEvent={setCurrentEvent}
+      events={events}
+      setEvents={setEvents}
+      currentEvent={currentEvent}
+      setCurrentEvent={setCurrentEvent}
       />
     </div>
   );

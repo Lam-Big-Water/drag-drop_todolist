@@ -6,8 +6,8 @@ import uuid from 'react-uuid';
 const Column = ({ tag, currentEvent, events, setEvents }) => {
   const handleAdd = () => {
     const name = prompt('Enter task name:');
-    const details = prompt('Enter details:');
-    if (!(name && details)) return;
+    const details = prompt('Enter details');
+    if (!(name && details)) return
     setEvents((prev) => {
       const arrCopy = [...prev];
       const index = prev.findIndex(
@@ -15,29 +15,29 @@ const Column = ({ tag, currentEvent, events, setEvents }) => {
       );
       const eventCopy = arrCopy[index];
       // Remove old and add the latest data
-      arrCopy.splice(index, 1, {
+      arrCopy.splice(index, 1 , {
         ...eventCopy,
         [tag]: [
           ...eventCopy[tag],
-          { name: name, id: uuid(), details: details },
+          {name: name, id: uuid(), details: details},
         ],
       });
-      return arrCopy;
+      return arrCopy
     });
   };
 
   const handleRemove = (id) => {
     setEvents((prev) =>
-      prev.map((event) => {
-        if (event.title === currentEvent.title) {
-          const taskList = event[tag];
-          const index = taskList.findIndex((item) => item.id === id);
-          taskList.splice(index, 1);
-          return { ...event, [tag]: [...taskList] };
-        } else {
-          return event;
-        }
-      })
+    prev.map((event) => {
+      if (event.title === currentEvent.title) {
+        const taskList = event[tag];
+        const index = taskList.findIndex((item) => item.id === id);
+        taskList.splice(index, 1);
+        return {...event, [tag]: [...taskList]}
+      } else {
+        return event;
+      }
+    })
     );
   };
 
